@@ -1,0 +1,122 @@
+
+.about-section {
+    padding: 100px 24px;
+    background: #ffffff;
+}
+
+.about-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+}
+
+.about-label {
+    color: #247f79;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.about-content h2 {
+    margin: 18px 0 24px;
+    color: #173b45;
+    font-size: 43px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.about-content h2 span {
+    color: #247f79;
+}
+
+.about-content > p {
+    color: #718087;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.about-button {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 15px 24px;
+    border-radius: 8px;
+    background: #247f79;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.about-button:hover {
+    background: #185f5b;
+    transform: translateY(-2px);
+}
+
+.about-advantages {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 35px;
+    border-radius: 18px;
+    background: #f5f9f8;
+}
+
+.about-advantage {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 22px;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.about-number {
+    color: #247f79;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.about-advantage h3 {
+    margin: 0 0 9px;
+    color: #173b45;
+    font-size: 18px;
+}
+
+.about-advantage p {
+    margin: 0;
+    color: #718087;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+@media (max-width: 850px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-section {
+        padding: 70px 18px;
+    }
+
+    .about-content h2 {
+        font-size: 34px;
+    }
+
+    .about-advantages {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .about-advantage {
+        padding: 18px;
+        gap: 15px;
+    }
+}

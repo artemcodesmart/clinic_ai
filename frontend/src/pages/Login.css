@@ -1,0 +1,256 @@
+.login-page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #f5f9f8;
+}
+
+/* Левая часть */
+
+.login-brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 45px 55px;
+    background: #173b45;
+    color: white;
+}
+
+.login-logo {
+    color: white;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.login-logo > span:first-child,
+.login-logo-accent {
+    color: #55c1b2;
+}
+
+.login-welcome {
+    max-width: 470px;
+    margin: auto 0;
+}
+
+.login-label {
+    color: #55c1b2;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.login-welcome h1 {
+    margin: 20px 0;
+    font-size: 48px;
+    line-height: 1.2;
+    color: white;
+}
+
+.login-welcome h1 span {
+    display: block;
+    color: #55c1b2;
+}
+
+.login-welcome p {
+    max-width: 390px;
+    color: #c4d3d5;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.login-brand-footer {
+    color: #a9c0c2;
+    font-size: 13px;
+}
+
+/* Правая часть */
+
+.login-form-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 25px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 42px;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 15px 50px rgba(23, 59, 69, 0.07);
+}
+
+.login-card-heading {
+    margin-bottom: 32px;
+}
+
+.login-card-heading > span {
+    color: #247f79;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.login-card-heading h2 {
+    margin: 12px 0;
+    color: #173b45;
+    font-size: 34px;
+}
+
+.login-card-heading p {
+    color: #879497;
+    font-size: 14px;
+}
+
+/* Форма */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    margin-bottom: 9px;
+    color: #173b45;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.login-form input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 22px;
+    padding: 15px;
+    border: 1px solid #e1eae8;
+    border-radius: 8px;
+    outline: none;
+    background: #fbfdfc;
+    color: #173b45;
+    font-size: 14px;
+}
+
+.login-form input:focus {
+    border-color: #247f79;
+    box-shadow: 0 0 0 3px rgba(36, 127, 121, 0.1);
+}
+
+.login-form button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #247f79;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.login-form button:hover {
+    background: #185f5b;
+}
+
+.login-form button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Ошибка */
+
+.login-error {
+    margin-bottom: 18px;
+    padding: 12px;
+    border-radius: 7px;
+    background: #fff0f0;
+    color: #c03939;
+    font-size: 13px;
+}
+
+/* Ссылки */
+
+.login-register-link {
+    margin-top: 25px;
+    text-align: center;
+    color: #879497;
+    font-size: 13px;
+}
+
+.login-register-link a {
+    margin-left: 5px;
+    color: #247f79;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-register-link a:hover {
+    text-decoration: underline;
+}
+
+.login-back-home {
+    display: block;
+    margin-top: 25px;
+    color: #718087;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.login-back-home:hover {
+    color: #247f79;
+}
+
+/* Адаптация */
+
+@media (max-width: 850px) {
+    .login-page {
+        grid-template-columns: 1fr;
+    }
+
+    .login-brand {
+        min-height: 280px;
+        padding: 30px;
+    }
+
+    .login-welcome {
+        margin: 45px 0;
+    }
+
+    .login-welcome h1 {
+        font-size: 36px;
+    }
+
+    .login-brand-footer {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-brand {
+        min-height: 230px;
+        padding: 25px 20px;
+    }
+
+    .login-welcome {
+        margin: 35px 0 10px;
+    }
+
+    .login-welcome h1 {
+        font-size: 30px;
+    }
+
+    .login-welcome p {
+        font-size: 13px;
+    }
+
+    .login-form-side {
+        padding: 25px 16px;
+    }
+
+    .login-card {
+        padding: 28px 22px;
+    }
+}

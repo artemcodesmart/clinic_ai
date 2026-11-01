@@ -8,12 +8,14 @@ import Login from "./pages/Login.jsx";
 import AdminConversations from "./pages/AdminConversations.jsx";
 import PatientRegister from "./pages/PatientRegister.jsx";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./pages/Home.jsx";
 
 function App() {
   return (
   <BrowserRouter>
   <Routes>
   <Route path="/login" element={<Login />}/>
+  <Route path="/" element={<Home />} />
   <Route path="/conversations" element={<Conversations />}/>
   <Route path="/chat/:conversationId" element= {<Chat />}/>
   <Route path="/admin/conversations" element={

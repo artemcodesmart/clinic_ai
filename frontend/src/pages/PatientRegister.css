@@ -1,76 +1,296 @@
+
 .patient-register-page {
     min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #f5f9f8;
+}
+
+/* LEFT BRAND PANEL */
+
+.patient-register-brand {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 45px 55px;
+    background: #173b45;
+    color: white;
+}
+
+.patient-register-logo {
+    color: white;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.patient-register-logo span {
+    color: #55c1b2;
+}
+
+.patient-register-welcome {
+    max-width: 470px;
+    margin: auto 0;
+}
+
+.patient-register-label {
+    color: #55c1b2;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.patient-register-welcome h2 {
+    margin: 20px 0;
+    color: white;
+    font-size: 46px;
+    line-height: 1.2;
+}
+
+.patient-register-welcome h2 span {
+    display: block;
+    color: #55c1b2;
+}
+
+.patient-register-welcome p {
+    color: #c4d3d5;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.patient-register-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    margin-top: 35px;
+}
+
+.patient-register-benefit {
+    display: flex;
     align-items: center;
-    background: #f5f7fb;
-    padding: 20px;
+    gap: 12px;
+    color: #e1eeee;
+    font-size: 14px;
+}
+
+.patient-register-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgba(85, 193, 178, 0.15);
+    color: #55c1b2;
+}
+
+.patient-register-brand-footer {
+    color: #a9c0c2;
+    font-size: 13px;
+}
+
+/* RIGHT SIDE */
+
+.patient-register-form-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 45px 25px;
 }
 
 .patient-register-card {
     width: 100%;
-    max-width: 420px;
+    max-width: 460px;
+    padding: 42px;
+    border-radius: 18px;
     background: white;
-    padding: 32px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 15px 50px rgba(23, 59, 69, 0.07);
 }
 
-.patient-register-card h1 {
-    margin: 0 0 24px;
-    text-align: center;
-    font-size: 28px;
-    color: #111827;
+.patient-register-heading {
+    margin-bottom: 30px;
 }
+
+.patient-register-heading > span {
+    color: #247f79;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.patient-register-heading h1 {
+    margin: 12px 0;
+    color: #173b45;
+    font-size: 34px;
+}
+
+.patient-register-heading p {
+    color: #879497;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* FORM */
 
 .patient-register-form {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
+}
+
+.patient-register-form label {
+    margin-top: 8px;
+    color: #173b45;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .patient-register-form input {
     width: 100%;
     box-sizing: border-box;
-    padding: 12px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    background: #ffffff;
-    color: #111827;
-    font-size: 15px;
+    padding: 14px 15px;
+    border: 1px solid #e1eae8;
+    border-radius: 8px;
+    background: #fbfdfc;
+    color: #173b45;
+    font-size: 14px;
     outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
 }
 
 .patient-register-form input:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    border-color: #247f79;
+    box-shadow: 0 0 0 3px rgba(36, 127, 121, 0.1);
+}
+
+.patient-register-form input::placeholder {
+    color: #a3b0b1;
 }
 
 .patient-register-form button {
-    margin-top: 8px;
-    padding: 12px;
+    margin-top: 15px;
+    padding: 16px;
     border: none;
-    border-radius: 10px;
-    background: #6366f1;
+    border-radius: 8px;
+    background: #247f79;
     color: white;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
 }
 
 .patient-register-form button:hover {
-    background: #4f46e5;
+    background: #185f5b;
+    transform: translateY(-2px);
 }
 
 .patient-register-form button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    transform: none;
 }
 
+/* ERROR */
+
 .patient-register-error {
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
-    background: #fee2e2;
-    color: #b91c1c;
-    font-size: 14px;
+    background: #fff0f0;
+    color: #c03939;
+    font-size: 13px;
+}
+
+/* LINKS */
+
+.register-login-link {
+    margin-top: 25px;
+    text-align: center;
+    color: #879497;
+    font-size: 13px;
+}
+
+.register-login-link span {
+    margin-left: 5px;
+    color: #247f79;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.register-login-link span:hover {
+    color: #185f5b;
+    text-decoration: underline;
+}
+
+.register-back-home {
+    display: block;
+    margin-top: 22px;
+    color: #718087;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.register-back-home:hover {
+    color: #247f79;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .patient-register-page {
+        grid-template-columns: 1fr;
+    }
+
+    .patient-register-brand {
+        padding: 30px;
+    }
+
+    .patient-register-welcome {
+        margin: 40px 0;
+    }
+
+    .patient-register-welcome h2 {
+        font-size: 36px;
+    }
+
+    .patient-register-brand-footer {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .patient-register-brand {
+        padding: 25px 20px;
+    }
+
+    .patient-register-welcome {
+        margin: 30px 0 10px;
+    }
+
+    .patient-register-welcome h2 {
+        font-size: 30px;
+    }
+
+    .patient-register-welcome p {
+        font-size: 13px;
+    }
+
+    .patient-register-benefits {
+        gap: 12px;
+        margin-top: 22px;
+    }
+
+    .patient-register-form-side {
+        padding: 25px 16px;
+    }
+
+    .patient-register-card {
+        padding: 28px 22px;
+    }
+
+    .patient-register-heading h1 {
+        font-size: 29px;
+    }
 }

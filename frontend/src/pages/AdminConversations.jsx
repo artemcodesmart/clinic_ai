@@ -101,19 +101,29 @@ function AdminConversations() {
 
 
         <div className="admin-conversations">
-         <LogoutButton />
+
 
             {/* =========================
                 SIDEBAR
             ========================= */}
 
             <aside
+
                 className={`conversations-sidebar ${
                     conversationId
                         ? "sidebar-hidden-mobile"
                         : ""
                 }`}
             >
+             <div className="admin-sidebar-brand">
+        <div className="admin-brand-logo">
+            ✦ CLINIC<span>1</span>
+        </div>
+        <p>Dental Care Management</p>
+    </div>
+    <div className="admin-logout-area">
+    <LogoutButton />
+</div>
 
                 {/* HEADER */}
 

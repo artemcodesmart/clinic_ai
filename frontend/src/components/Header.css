@@ -1,0 +1,114 @@
+
+.site-header {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #edf0f0;
+}
+
+.header-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 20px 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.clinic-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #173b45;
+    cursor: pointer;
+}
+
+.logo-icon {
+    color: #36a99b;
+    font-size: 30px;
+}
+
+.logo-accent {
+    color: #36a99b;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-nav a {
+    color: #52656a;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.header-nav a:hover {
+    color: #36a99b;
+}
+
+.header-booking {
+    background: #247f79;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 11px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.header-booking:hover {
+    background: #185f5b;
+}
+@media (max-width: 850px) {
+    .header-container {
+        flex-wrap: wrap;
+        padding: 18px 20px;
+    }
+
+    .header-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .header-booking {
+        padding: 11px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        gap: 15px;
+    }
+
+    .clinic-logo {
+        font-size: 19px;
+    }
+
+    .header-nav {
+        gap: 14px;
+    }
+
+    .header-nav a {
+        font-size: 12px;
+    }
+
+    .header-booking {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+

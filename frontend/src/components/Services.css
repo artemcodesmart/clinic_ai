@@ -1,0 +1,130 @@
+
+.services-section {
+    padding: 100px 24px;
+    background: #ffffff;
+}
+
+.services-container {
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.services-heading {
+    max-width: 600px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.services-label {
+    color: #247f79;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.services-heading h2 {
+    margin: 15px 0;
+    color: #173b45;
+    font-size: 40px;
+    letter-spacing: -1px;
+}
+
+.services-heading p {
+    color: #718087;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.service-card {
+    padding: 32px;
+    border: 1px solid #e9f0ef;
+    border-radius: 16px;
+    background: #ffffff;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(23, 59, 69, 0.08);
+}
+
+.service-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 13px;
+    background: #eaf5f3;
+    color: #247f79;
+    font-size: 27px;
+}
+
+.service-number {
+    color: #b5c5c3;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.service-card h3 {
+    color: #173b45;
+    font-size: 21px;
+    margin-bottom: 14px;
+}
+
+.service-card p {
+    min-height: 75px;
+    color: #718087;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.service-card a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #247f79;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.service-card a span {
+    margin-left: 6px;
+}
+
+@media (max-width: 850px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .services-section {
+        padding: 70px 18px;
+    }
+
+    .services-heading h2 {
+        font-size: 32px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        padding: 26px;
+    }
+}
