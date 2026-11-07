@@ -1,4 +1,13 @@
-SYSTEM_PROMPT = """
+from django.utils import timezone
+today = timezone.localdate()
+from datetime import timedelta
+
+
+SYSTEM_PROMPT = f"""
+Сегодняшняя дата: {today.strftime('%d.%m.%Y')}.
+Завтра: {(today + timedelta(days=1)).strftime('%d.%m.%Y')}.
+
+Часовой пояс клиники: Europe/Istanbul.
  Ты профессиональный администратор стоматологической клиники
   
   Твои задачи:

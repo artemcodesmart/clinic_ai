@@ -24,6 +24,8 @@ def ai_reply(event):
             conversation=conversation,
             role="assistant",
             content=reply,
+
+
         )
 
         print("AI message created")
@@ -34,6 +36,7 @@ def ai_reply(event):
                 "message_id": str(assistant_message.id),
                 "conversation_id": str(conversation.id),
                 "role": assistant_message.role,
+                "text": assistant_message.content,
             }
         )
 

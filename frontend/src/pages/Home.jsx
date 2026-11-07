@@ -6,6 +6,7 @@ import Doctors from "../components/Doctors";
 import "./Home.css";
 import About from "../components/About";
 
+
 function Home() {
     return (
         <div className="home-page">
@@ -15,6 +16,7 @@ function Home() {
                    <Services />
                    <Doctors />
                        <About />
+
             </main>
         </div>
     );

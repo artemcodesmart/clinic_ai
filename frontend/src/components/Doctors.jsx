@@ -15,10 +15,10 @@ const doctors = [
         initials: "DM",
     },
     {
-        name: "Dr. Ayşe",
+        name: "Dr. Hatice",
         specialty: "Cosmetic Dentist",
         experience: "7+ years experience",
-        initials: "DA",
+        initials: "HD",
     },
 ];
 

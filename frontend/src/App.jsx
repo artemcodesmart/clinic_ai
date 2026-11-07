@@ -9,6 +9,7 @@ import AdminConversations from "./pages/AdminConversations.jsx";
 import PatientRegister from "./pages/PatientRegister.jsx";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home.jsx";
+import Contacts from "./pages/Contacts.jsx";
 
 function App() {
   return (
@@ -16,8 +17,10 @@ function App() {
   <Routes>
   <Route path="/login" element={<Login />}/>
   <Route path="/" element={<Home />} />
+  <Route path="/contacts" element={<Contacts />} />
   <Route path="/conversations" element={<Conversations />}/>
   <Route path="/chat/:conversationId" element= {<Chat />}/>
+
   <Route path="/admin/conversations" element={
                         <ProtectedRoute allowedRole="admin">
                             <AdminConversations />

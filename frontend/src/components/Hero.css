@@ -1,4 +1,7 @@
-
+.clinic-logo {
+    text-decoration: none;
+    color: inherit;
+}
 .hero-section {
     width: 100%;
     background: #f5f9f8;

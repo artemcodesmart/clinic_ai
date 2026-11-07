@@ -1,28 +1,54 @@
 
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const goToSection = (section) => {
+        if (location.pathname !== "/") {
+            navigate("/", { state: { scrollTo: section } });
+        } else {
+            document.getElementById(section)?.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    };
 
     return (
         <header className="site-header">
             <div className="header-container">
 
-                <div
-                    className="clinic-logo"
-                    onClick={() => navigate("/")}
-                >
+                <Link to="/" className="clinic-logo">
                     <span className="logo-icon">✦</span>
-                    <span>CLINIC<span className="logo-accent">1</span></span>
-                </div>
+                    <span>
+                        CLINIC<span className="logo-accent">1</span>
+                    </span>
+                </Link>
 
                 <nav className="header-nav">
-                    <a href="#home">Home</a>
-                    <a href="#services">Services</a>
-                    <a href="#doctors">Our Doctors</a>
-                    <a href="#about">About Us</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#home" onClick={(e) => {
+                        e.preventDefault();
+                        goToSection("home");
+                    }}>Home</a>
+
+                    <a href="#services" onClick={(e) => {
+                        e.preventDefault();
+                        goToSection("services");
+                    }}>Services</a>
+
+                    <a href="#doctors" onClick={(e) => {
+                        e.preventDefault();
+                        goToSection("doctors");
+                    }}>Our Doctors</a>
+
+                    <a href="#about" onClick={(e) => {
+                        e.preventDefault();
+                        goToSection("about");
+                    }}>About Us</a>
+
+                    <Link to="/contacts">Contact</Link>
                 </nav>
 
                 <button
@@ -38,4 +64,3 @@ function Header() {
 }
 
 export default Header;
-

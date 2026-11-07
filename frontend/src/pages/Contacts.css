@@ -1,0 +1,183 @@
+.contacts-page {
+    min-height: 100vh;
+    padding: 80px 7%;
+    background: #f5f9f8;
+    color: #173b45;
+    font-family: inherit;
+}
+
+.contacts-hero {
+    max-width: 750px;
+    margin: 0 auto 65px;
+    text-align: center;
+}
+
+.contacts-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: #247f79;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.contacts-hero h1 {
+    margin: 0;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.contacts-hero h1 span {
+    color: #247f79;
+}
+
+.contacts-hero p {
+    max-width: 550px;
+    margin: 22px auto 0;
+    color: #718487;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.contacts-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.contacts-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.contact-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    min-height: 155px;
+    padding: 25px 20px;
+    background: #ffffff;
+    border: 1px solid #e8efed;
+    border-radius: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(23, 59, 69, 0.07);
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #eaf4f1;
+    color: #247f79;
+    font-size: 20px;
+}
+
+.contact-card h3 {
+    margin: 2px 0 8px;
+    font-size: 16px;
+}
+
+.contact-card p {
+    margin: 0 0 9px;
+    color: #829394;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.contact-card span {
+    color: #247f79;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.contacts-message {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    min-height: 330px;
+    padding: 45px;
+    border-radius: 18px;
+    background: #173b45;
+    color: #ffffff;
+}
+
+.contacts-message .contacts-label {
+    color: #75c9bb;
+}
+
+.contacts-message h2 {
+    max-width: 380px;
+    margin: 0 0 18px;
+    font-size: 34px;
+    line-height: 1.2;
+}
+
+.contacts-message p {
+    max-width: 380px;
+    margin: 0;
+    color: #c1d2d1;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.contacts-message-decoration {
+    position: absolute;
+    right: 25px;
+    bottom: -25px;
+    color: rgba(255, 255, 255, 0.07);
+    font-size: 65px;
+    font-weight: 800;
+}
+
+.contacts-message-decoration strong {
+    color: rgba(85, 193, 178, 0.2);
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .contacts-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .contacts-page {
+        padding: 55px 20px;
+    }
+
+    .contacts-hero {
+        margin-bottom: 40px;
+    }
+
+    .contacts-info {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+        min-height: auto;
+    }
+
+    .contacts-message {
+        min-height: 280px;
+        padding: 30px;
+    }
+
+    .contacts-message h2 {
+        font-size: 28px;
+    }
+}

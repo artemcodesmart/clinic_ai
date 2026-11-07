@@ -6,7 +6,7 @@ from openai import OpenAI
 
 
 class OpenAIClient:
-    def chat(self, messages):
+    def chat(self, messages,tools=None,tool_choice="auto"):
         api_key = getattr(settings, "OPENAI_API_KEY", "")
 
         if not api_key:
@@ -15,19 +15,24 @@ class OpenAIClient:
             )
 
         client = OpenAI(api_key=api_key)
-
-        response = client.chat.completions.create(
-            model=getattr(
+        kwargs = {
+            "model": getattr(
                 settings,
                 "OPENAI_MODEL",
                 "gpt-4.1-mini",
             ),
-            messages=messages,
-        )
+            "messages": messages,
+        }
 
-        reply = response.choices[0].message.content
+        if tools:
+            kwargs["tools"] = tools
+            kwargs["tool_choice"] = tool_choice
 
-        if not reply:
-            raise RuntimeError("OpenAI returned an empty response")
+        response = client.chat.completions.create(**kwargs)
 
-        return reply
+        assistant_message = response.choices[0].message
+
+        if not assistant_message.content and not assistant_message.tool_calls:
+            raise RuntimeError("OpenAI returned an empty response.")
+
+        return assistant_message
