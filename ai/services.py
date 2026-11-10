@@ -3,7 +3,7 @@ import json
 import logging
 
 from ai.clients.openai_client import OpenAIClient
-from ai.prompts.receptionist import SYSTEM_PROMPT
+from ai.prompts.receptionist import get_system_prompt
 from ai.tools.definitions import TOOLS
 from ai.tools.executor import execute_tool
 
@@ -21,7 +21,7 @@ class AIService:
             {
                 "role": "system",
                 "content": (
-                    SYSTEM_PROMPT
+                    get_system_prompt()
                     + "\n\n"
                     + "Для записи пациента используй инструменты. "
                     + "Никогда не утверждай, что запись создана, "
