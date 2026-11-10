@@ -79,12 +79,9 @@ TOOLS = [
                 "type": "string",
                 "description": "Время HH:MM.",
             },
-            "duration_minutes": {
-                "type": "integer",
-                "enum": DURATION_OPTIONS,
-            },
+
         },
-        ["doctor_name", "date", "start_time", "duration_minutes"],
+        ["doctor_name", "date", "start_time"],
     ),
 
     function_tool(

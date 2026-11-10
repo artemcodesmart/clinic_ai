@@ -186,7 +186,7 @@ def execute_tool(conversation, tool_name, arguments):
             "slots": offered_slots,
         }
 
-    # 4. Создание записи
+
 
     # 4. Создание записи
     if tool_name == "book_appointment":
@@ -195,9 +195,6 @@ def execute_tool(conversation, tool_name, arguments):
                 "doctor_name": str(arguments["doctor_name"]).strip(),
                 "date": str(arguments["date"]).strip(),
                 "start_time": str(arguments["start_time"]).strip()[:5],
-                "duration_minutes": int(
-                    arguments["duration_minutes"]
-                ),
             }
         except (ValueError, TypeError, KeyError):
             return {
@@ -205,24 +202,22 @@ def execute_tool(conversation, tool_name, arguments):
                 "message": "Некорректные параметры записи.",
             }
 
-        if requested["duration_minutes"] not in DURATION_OPTIONS:
-            return {
-                "success": False,
-                "message": "Недопустимая длительность записи.",
-            }
+        # Нормализуем имя: Dr. Ahmet и Dr.Ahmet
+        # должны считаться одним врачом.
+        normalized_name = "".join(
+            requested["doctor_name"].split()
+        ).casefold()
 
-        # Ищем врача и время среди реально предложенных слотов.
         selected_slot = next(
             (
                 slot
                 for slot in (conversation.pending_slots or [])
-                if str(slot.get("doctor_name", "")).strip().casefold()
-                == requested["doctor_name"].casefold()
+                if "".join(
+                    str(slot.get("doctor_name", "")).split()
+                ).casefold() == normalized_name
                 and str(slot.get("date")) == requested["date"]
                 and str(slot.get("start_time", ""))[:5]
                 == requested["start_time"]
-                and int(slot.get("duration_minutes", 0))
-                == requested["duration_minutes"]
             ),
             None,
         )
@@ -236,14 +231,21 @@ def execute_tool(conversation, tool_name, arguments):
                 ),
             }
 
-        # ID врача берём из базы сохранённых слотов,
-        # а не доверяем ID, переданному OpenAI.
+        # Продолжительность берём из реального сохранённого слота.
+        duration = int(selected_slot["duration_minutes"])
+
+        if duration not in DURATION_OPTIONS:
+            return {
+                "success": False,
+                "message": "Недопустимая длительность слота.",
+            }
+
         result = book_appointment(
             conversation=conversation,
             doctor_id=selected_slot["doctor_id"],
             appointment_date=selected_slot["date"],
             start_time=selected_slot["start_time"],
-            duration_minutes=selected_slot["duration_minutes"],
+            duration_minutes=duration,
         )
 
         if result.get("success"):
@@ -256,6 +258,7 @@ def execute_tool(conversation, tool_name, arguments):
             ])
 
         return result
+
 
 
     # 5. Просмотр записей пациента
