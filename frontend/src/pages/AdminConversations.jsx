@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
 import AdminChat from "./AdminChat";
 import "./AdminChat.css";
-import LogoutButton from "../components/LogoutButton";
+
 
 
 function AdminConversations() {
@@ -115,15 +115,9 @@ function AdminConversations() {
                         : ""
                 }`}
             >
-             <div className="admin-sidebar-brand">
-        <div className="admin-brand-logo">
-            ✦ CLINIC<span>1</span>
-        </div>
-        <p>Dental Care Management</p>
-    </div>
-    <div className="admin-logout-area">
-    <LogoutButton />
-</div>
+
+
+
 
                 {/* HEADER */}
 

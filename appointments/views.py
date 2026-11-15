@@ -1,11 +1,11 @@
 from django.utils import timezone
 
 from rest_framework import serializers
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView,UpdateAPIView,ListAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from appointments.models import Appointment
-from appointments.serializers import AppointmantSerializer
+from appointments.models import Appointment,Doctor
+from appointments.serializers import AppointmantSerializer,AppointmentStatusSerializer,DoctorSerializer,AppointmentEditSerializer
 
 class AppointmentListCreateAPIView(ListCreateAPIView):
     serializer_class = AppointmantSerializer
@@ -54,5 +54,62 @@ class AppointmentListCreateAPIView(ListCreateAPIView):
         )
 
 from django.shortcuts import render
+
+class AppointmentStatusUpdateAPIView(UpdateAPIView):
+    serializer_class = AppointmentStatusSerializer
+    permission_classes = [IsAuthenticated]
+    http_method_names = ["patch", "options"]
+
+    def get_queryset(self):
+        user = self.request.user
+        clinic = getattr(user, "clinic", None)
+
+        if not clinic:
+            return Appointment.objects.none()
+
+        return Appointment.objects.filter(
+            clinic=clinic
+        )
+
+    def get_serializer(self, *args, **kwargs):
+        kwargs["partial"] = True
+        return super().get_serializer(*args, **kwargs)
+
+
+
+
+class DoctorListAPIView(ListAPIView):
+    serializer_class = DoctorSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        clinic = getattr(self.request.user, "clinic", None)
+
+        if not clinic:
+            return Doctor.objects.none()
+
+        return Doctor.objects.filter(
+            clinic=clinic,
+            is_active=True,
+        )
+
+
+
+class AppointmentEditAPIView(UpdateAPIView):
+    serializer_class = AppointmentEditSerializer
+    permission_classes = [IsAuthenticated]
+    http_method_names = ["patch", "options"]
+
+    def get_queryset(self):
+        clinic = getattr(self.request.user, "clinic", None)
+
+        if not clinic:
+            return Appointment.objects.none()
+
+        return Appointment.objects.filter(clinic=clinic)
+
+    def get_serializer(self, *args, **kwargs):
+        kwargs["partial"] = True
+        return super().get_serializer(*args, **kwargs)
 
 # Create your views here.
