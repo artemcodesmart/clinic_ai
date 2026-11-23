@@ -2,9 +2,9 @@
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../LogoutButton";
 
-function Sidebar() {
+function Sidebar({ menuOpen, onNavigate })  {
     return (
-        <aside className="dashboard-sidebar">
+        <aside className={`dashboard-sidebar ${menuOpen ? "open" : ""}`}>
 
             <div className="dashboard-brand">
                 <h2>
@@ -13,7 +13,10 @@ function Sidebar() {
                 <p>Dental Care Management</p>
             </div>
 
-            <nav className="dashboard-navigation">
+            <nav
+    className="dashboard-navigation"
+    onClick={onNavigate}
+>
 
                 <NavLink
                     to="/admin"
@@ -65,6 +68,15 @@ function Sidebar() {
                     <span>▤</span>
                     Conversations
                 </NavLink>
+                <NavLink
+    to="/admin/website"
+    className={({ isActive }) =>
+        isActive ? "nav-item active" : "nav-item"
+    }
+>
+    <span>▣</span>
+    Website Builder
+</NavLink>
 
                 <NavLink
                     to="/admin/settings"

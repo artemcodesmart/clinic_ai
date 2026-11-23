@@ -13,6 +13,8 @@ import Contacts from "./pages/Contacts.jsx";
 import AdminLayout from "./components/dashboard/AdminLayout";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminAppointments from "./pages/AdminAppointments";
+import ClinicRegister from "./pages/ClinicRegister.jsx";
+import AdminWebsite from "./pages/AdminWebsite";
 
 function App() {
   return (
@@ -33,6 +35,11 @@ function App() {
     }
 >
     <Route index element={<AdminDashboard />} />
+    <Route
+        path="website"
+        element={<AdminWebsite />}
+    />
+
 
     <Route
         path="conversations"
@@ -49,6 +56,10 @@ function App() {
     />
 </Route>
   <Route path="/register/:slug" element={<PatientRegister />}/>
+  <Route
+    path="/clinic/register"
+    element={<ClinicRegister />}
+/>
 
   </Routes>
   </BrowserRouter>

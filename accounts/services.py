@@ -1,13 +1,16 @@
 from django.contrib.auth.models import User
 from leads.models import Lead
-from clinics.models import Clinic
+from clinics.models import Clinic,ClinicBranding
 from conversations.models import Conversation
+from django.db import transaction
 
 class AccountService:
     @staticmethod
+    @transaction.atomic
     def register(username,password,clinic_name,email=""):
         user = User.objects.create_user(username=username,password=password,email=email,)
-        Clinic.objects.create(owner=user,name=clinic_name,)
+        clinic = Clinic.objects.create(owner=user,name=clinic_name)
+        ClinicBranding.objects.create(clinic=clinic,)
         return user
 
 

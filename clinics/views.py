@@ -4,45 +4,37 @@ from django.db.models import Count
 from django.db.models.functions import TruncDate
 from django.utils import timezone
 from rest_framework.views import APIView
+from rest_framework.generics import RetrieveUpdateAPIView,ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+from clinics.serializers import ClinicPublicSerializer,ClinicBrandingSerializer,ClinicPageSerializer,ClinicAssetSerializer
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.permissions import AllowAny
+from rest_framework.parsers import MultiPartParser, FormParser
+from django.db import transaction
+from rest_framework import status
+
+from clinics.models import Clinic,ClinicBranding,ClinicPage,ClinicAsset
 
 from appointments.models import Appointment, Doctor
 from conversations.models import Conversation
 from leads.models import Lead
+from .services import get_appointments_chart_data,get_dashboard_stats,ClinicPageService
 
 
 class DashboardStatsAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        user = request.user
-        clinic = getattr(user, "clinic", None)
+        clinic = getattr(request.user, "clinic", None)
 
         if not clinic:
             raise PermissionDenied(
                 "You do not have access to clinic statistics."
             )
 
-        stats = {
-            "appointments": Appointment.objects.filter(
-                clinic=clinic
-            ).count(),
-
-            "patients": Lead.objects.filter(
-                clinic=clinic
-            ).count(),
-
-            "doctors": Doctor.objects.filter(
-                clinic=clinic,
-                is_active=True
-            ).count(),
-
-            "conversations": Conversation.objects.filter(
-                lead__clinic=clinic
-            ).count(),
-        }
+        stats = get_dashboard_stats(clinic)
 
         return Response(stats)
 
@@ -59,38 +51,10 @@ class DashboardAppointmentsChartAPIView(APIView):
                 "You do not have access to clinic statistics."
             )
 
-        today = timezone.localdate()
-        start_date = today - timedelta(days=6)
-
-        appointments = (
-            Appointment.objects
-            .filter(
-                clinic=clinic,
-                scheduled_at__date__gte=start_date,
-                scheduled_at__date__lte=today,
-            )
-            .annotate(date=TruncDate("scheduled_at"))
-            .values("date")
-            .annotate(count=Count("id"))
-            .order_by("date")
-        )
-
-        data = {
-            item["date"].isoformat(): item["count"]
-            for item in appointments
-        }
-
-        result = []
-
-        for day in range(7):
-            date = start_date + timedelta(days=day)
-
-            result.append({
-                "date": date.isoformat(),
-                "appointments": data.get(date.isoformat(), 0),
-            })
+        result = get_appointments_chart_data(clinic)
 
         return Response(result)
+
 
 from appointments.serializers import AppointmantSerializer
 
@@ -120,3 +84,76 @@ class RecentAppointmentsAPIView(APIView):
 
         return Response(serializer.data)
 
+
+
+class ClinicPublicAPIView(RetrieveAPIView):
+    serializer_class = ClinicPublicSerializer
+    permission_classes = [AllowAny]
+    lookup_field = "slug"
+    queryset = Clinic.objects.filter(is_active=True)
+
+
+
+
+class ClinicBrandingAPIView(RetrieveUpdateAPIView):
+    serializer_class = ClinicBrandingSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return ClinicBranding.objects.get(
+            clinic=self.request.user.clinic
+        )
+
+class ClinicPageListCreateAPIView(ListCreateAPIView):
+    serializer_class = ClinicPageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return ClinicPage.objects.filter(
+            clinic=self.request.user.clinic
+        )
+
+    def perform_create(self, serializer):
+        serializer.save(
+            clinic=self.request.user.clinic
+        )
+
+
+class ClinicPageDetailAPIView(RetrieveUpdateAPIView):
+    serializer_class = ClinicPageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return ClinicPage.objects.filter(
+            clinic=self.request.user.clinic
+        )
+
+class ClinicPagePublishAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        page = ClinicPageService.publish(
+            clinic=request.user.clinic,
+            page_id=pk,
+        )
+
+        return Response({
+            "message": "Page published successfully",
+            "is_published": page.is_published,
+        })
+
+
+class ClinicAssetListCreateAPIView(ListCreateAPIView):
+    serializer_class = ClinicAssetSerializer
+    permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def get_queryset(self):
+        return ClinicAsset.objects.filter(
+            clinic=self.request.user.clinic
+        )
+
+    def perform_create(self, serializer):
+        serializer.save(
+            clinic=self.request.user.clinic
+        )
