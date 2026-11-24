@@ -359,6 +359,7 @@
 @media (max-width: 800px) {
     .admin-conversations {
         height: calc(100vh - 40px);
+        }
 
     .conversations-sidebar {
         flex: 0 0 100%;
